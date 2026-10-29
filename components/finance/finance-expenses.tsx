@@ -12,11 +12,11 @@ export function FinanceExpenses({
   const { transactions, monthlyTrend, categoryBreakdown, config } = data;
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex items-start justify-between gap-4 flex-wrap">
+    <div className="workspace-page">
+      <div className="workspace-header">
         <div>
-          <h1 className="text-2xl font-semibold font-realce">Expenses</h1>
-          <p className="text-sm text-muted-foreground mt-1">
+          <h1 className="workspace-title">Expenses</h1>
+          <p className="workspace-description">
             All transactions · filter, search and manage
           </p>
         </div>
@@ -30,8 +30,8 @@ export function FinanceExpenses({
       </div>
 
       {/* Expense donut + category bar */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-3">
+      <div className="workspace-section">
+        <div>
           <FinanceCharts
             monthlyTrend={monthlyTrend}
             categoryBreakdown={categoryBreakdown}

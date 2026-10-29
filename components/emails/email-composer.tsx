@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Card } from "@/components/ui/card";
 import {
   Upload,
   Mail,
@@ -232,11 +231,11 @@ export function EmailComposer() {
   return (
     <form
       action={handleSubmit}
-      className="flex flex-col gap-6 max-w-5xl mx-auto"
+      className="workspace-page max-w-5xl"
     >
       <input type="hidden" name="recipients" value={recipients} />
 
-      <Card className="p-6 rounded-none">
+      <section className="space-y-4">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="subject">Subject Line</Label>
@@ -389,9 +388,9 @@ export function EmailComposer() {
             </div>
           </div>
         </div>
-      </Card>
+      </section>
 
-      <Card className="p-6 rounded-none">
+      <section className="workspace-section space-y-4">
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <Label>Recipients</Label>
@@ -476,7 +475,7 @@ export function EmailComposer() {
             />
           </div>
         </div>
-      </Card>
+      </section>
 
       <div className="flex justify-end">
         <SubmitBtn

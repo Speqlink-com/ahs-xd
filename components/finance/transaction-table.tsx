@@ -74,7 +74,7 @@ export function TransactionTable({
   return (
     <div className="flex flex-col gap-3">
       {/* Filters */}
-      <div className="flex items-center gap-2 flex-wrap">
+      <div className="workspace-toolbar">
         <div className="relative flex-1 min-w-48">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
           <Input
@@ -117,10 +117,10 @@ export function TransactionTable({
       </div>
 
       {/* Table */}
-      <div className="rounded-xl border border-border/60 overflow-hidden">
+      <div className="workspace-data-panel">
         <Table>
           <TableHeader>
-            <TableRow className="bg-muted/30 hover:bg-muted/30">
+            <TableRow>
               <TableHead>Date</TableHead>
               <TableHead>Type</TableHead>
               <TableHead>Category</TableHead>

@@ -44,11 +44,11 @@ const PIE_COLORS = [
   "var(--color-chart-3)",
   "var(--color-chart-4)",
   "var(--color-chart-5)",
-  "#a3e635",
+  "var(--primary)",
 ];
 
 const C = {
-  revenue: "#a3e635", // primary green
+  revenue: "var(--primary)", // AHS accent
   expense: "#ef4444", // red
   primary: "#60a5fa", // blue — primary wallet
   profit: "#a78bfa", // purple — profit wallet
@@ -140,9 +140,9 @@ function RevenueExpenseChart({
   const tooltipStyle = {
     backgroundColor: "var(--card)",
     border: "1px solid var(--border)",
-    borderRadius: 10,
+    borderRadius: 6,
     fontSize: 12,
-    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+    boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
   };
 
   const axisProps = {
@@ -263,7 +263,7 @@ function RevenueExpenseChart({
   const viewLabel = VIEW_OPTIONS.find((v) => v.value === view)?.label ?? "";
 
   return (
-    <div className="rounded-tl-4xl rounded-br-4xl border border-border/60 bg-card p-5 flex flex-col gap-4">
+    <div className="workspace-section flex flex-col gap-4">
       {/* Header */}
       <div className="flex items-start justify-between gap-3 flex-wrap">
         <div>
@@ -393,7 +393,7 @@ function DonutChart({
   const hasService = serviceBreakdown.length > 0;
 
   return (
-    <div className="rounded-tl-4xl rounded-br-4xl border border-border/60 bg-card p-5 flex flex-col gap-4 h-full">
+    <div className="workspace-section flex h-full flex-col gap-4">
       <div className="flex items-center justify-between gap-2">
         <div>
           <p className="text-sm font-semibold text-foreground">
@@ -450,9 +450,9 @@ function DonutChart({
                 contentStyle={{
                   backgroundColor: "var(--card)",
                   border: "1px solid var(--border)",
-                  borderRadius: 10,
+                  borderRadius: 6,
                   fontSize: 12,
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
                 }}
               />
             </PieChart>
@@ -500,7 +500,7 @@ export function FinanceCharts({
   return (
     <div className="flex flex-col gap-4">
       {/* Main interactive bar chart + donut side by side */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-5 lg:gap-8">
         <div className="lg:col-span-3">
           <RevenueExpenseChart trend={trend} currency={currency} />
         </div>

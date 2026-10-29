@@ -6,31 +6,22 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
-      {/* Background gradient blobs */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-primary/20 blur-[120px]" />
-        <div className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[300px] w-[300px] rounded-full bg-primary/5 blur-[80px]" />
+    <div className="min-h-screen w-full bg-background lg:grid lg:grid-cols-[minmax(300px,42%)_1fr]">
+      <aside className="auth-brand-surface hidden min-h-screen flex-col justify-between border-r border-border px-10 py-10 lg:flex xl:px-16">
+        <p className="font-realce text-sm uppercase tracking-[0.16em]">AHS-XD</p>
+        <div className="max-w-md">
+          <div className="mb-8 h-1 w-12 bg-primary" />
+          <p className="text-3xl font-semibold leading-tight tracking-tight">A clear view of the work that matters.</p>
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">Finance, operations and executive decisions in one connected workspace.</p>
+        </div>
+        <p className="text-xs text-muted-foreground">Ayot Health Solutions · Executive workspace</p>
+      </aside>
+      <div className="auth-form-surface relative flex min-h-screen flex-col">
+        <div className="flex justify-end px-5 py-5"><ThemeToggle /></div>
+        <main className="flex flex-1 items-center justify-center px-5 pb-10 sm:px-8">
+          <div className="w-full max-w-md">{children}</div>
+        </main>
       </div>
-
-      {/* Grid overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-
-      {/* Theme toggle top right */}
-      <div className="absolute top-5 right-5 z-10">
-        <ThemeToggle />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-md px-4">{children}</div>
     </div>
   );
 }

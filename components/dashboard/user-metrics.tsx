@@ -10,6 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { UserForm } from "@/components/dashboard/user-form";
+import { MetricItem, MetricStrip } from "@/components/ui/metric-strip";
 
 type Stats = {
   total: number;
@@ -55,31 +56,14 @@ export function UserMetrics({ stats }: { stats: Stats }) {
 
   return (
     <>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <MetricStrip>
         {METRIC_CARDS.map((card) => {
           const value = stats[card.key as keyof Stats] as number;
           return (
-            <div
-              key={card.key}
-              className="rounded-tl-4xl rounded-br-4xl border border-border/60 bg-card p-4 flex flex-col gap-3"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-                  {card.label}
-                </span>
-                <div
-                  className={`h-8 w-8 rounded-lg ${card.bg} flex items-center justify-center`}
-                >
-                  <card.icon className={`h-4 w-4 ${card.color}`} />
-                </div>
-              </div>
-              <p className="text-3xl font-bold text-foreground tabular-nums">
-                {value}
-              </p>
-            </div>
+            <MetricItem key={card.key} label={card.label} value={value} icon={card.icon} valueClassName={card.key === "suspended" && value > 0 ? "text-destructive" : undefined} />
           );
         })}
-      </div>
+      </MetricStrip>
 
       {/* Role breakdown + shortcut */}
       <div className="flex items-center justify-between flex-wrap gap-3">
@@ -87,7 +71,7 @@ export function UserMetrics({ stats }: { stats: Stats }) {
           {stats.byRole.map((r) => (
             <span
               key={r._id}
-              className="text-xs px-2.5 py-1 rounded-full border border-border/60 bg-muted/50 text-muted-foreground capitalize"
+              className="text-xs px-2 py-1 rounded-sm border border-border bg-card text-muted-foreground capitalize"
             >
               {r._id}{" "}
               <span className="font-semibold text-foreground ml-1">

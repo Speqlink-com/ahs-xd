@@ -7,6 +7,7 @@ import {
   Zap,
   DollarSign,
 } from "lucide-react";
+import { MetricItem, MetricStrip } from "@/components/ui/metric-strip";
 
 function fmt(n: number, currency = "KES") {
   if (n >= 1_000_000) return `${currency} ${(n / 1_000_000).toFixed(1)}M`;
@@ -19,8 +20,6 @@ function KpiCard({
   value,
   sub,
   icon: Icon,
-  gradient,
-  iconClass,
 }: {
   label: string;
   value: string;
@@ -29,26 +28,7 @@ function KpiCard({
   gradient: string;
   iconClass: string;
 }) {
-  return (
-    <div
-      className={`rounded-2xl border border-border/60 p-4 flex flex-col gap-3 ${gradient}`}
-    >
-      <div
-        className={`h-9 w-9 rounded-xl flex items-center justify-center ${iconClass}`}
-      >
-        <Icon className="h-4 w-4" />
-      </div>
-      <div>
-        <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium">
-          {label}
-        </p>
-        <p className="font-realce text-xl tabular-nums mt-0.5 text-foreground">
-          {value}
-        </p>
-        {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
-      </div>
-    </div>
-  );
+  return <MetricItem label={label} value={value} detail={sub} icon={Icon} />;
 }
 
 export function OpsKpiCards({
@@ -61,7 +41,7 @@ export function OpsKpiCards({
   currency?: string;
 }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
+    <MetricStrip className="md:grid-cols-3 xl:grid-cols-4">
       <KpiCard
         label="Calls Today"
         value={String(execStats.callsToday)}
@@ -134,6 +114,6 @@ export function OpsKpiCards({
         gradient="bg-linear-to-br from-cyan-500/10 via-cyan-500/5 to-transparent"
         iconClass="bg-cyan-500/20 text-cyan-400"
       />
-    </div>
+    </MetricStrip>
   );
 }

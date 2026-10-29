@@ -139,7 +139,7 @@ function WalletGauge({
         {/* Hover overlay */}
         {hovered ? (
           <div className="absolute inset-0 flex items-end justify-center pb-1">
-            <div className="flex items-center gap-3 bg-card border border-border/60 rounded-xl px-4 py-2.5 shadow-lg backdrop-blur-sm">
+            <div className="flex items-center gap-3 rounded-md border border-border bg-popover px-4 py-2.5 shadow-sm">
               <div className="flex flex-col items-center gap-0.5">
                 <span className="text-[9px] text-muted-foreground uppercase tracking-widest">
                   Spent
@@ -215,7 +215,6 @@ function WalletCard({
   totalIn,
   totalOut,
   color,
-  gradientClass,
   currency,
   children,
 }: {
@@ -230,12 +229,10 @@ function WalletCard({
   children?: React.ReactNode;
 }) {
   return (
-    <div
-      className={`rounded-2xl border border-border/60 p-5 flex flex-col gap-4 ${gradientClass}`}
-    >
+    <div className="flex flex-col gap-4 border-t border-border pt-5">
       <div className="flex items-center justify-between">
         <p className="text-sm font-semibold text-foreground">{title}</p>
-        <span className="text-xs text-muted-foreground px-2 py-0.5 rounded-full border border-border/60 bg-background/50">
+        <span className="rounded-sm border border-border px-2 py-0.5 text-xs text-muted-foreground">
           {tag}
         </span>
       </div>
@@ -273,7 +270,7 @@ export function WalletCards({
   if (state?.success && open) setOpen(false);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
       <WalletCard
         title="Primary Wallet"
         tag="Operating"

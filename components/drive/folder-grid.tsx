@@ -67,12 +67,12 @@ export function FolderGrid({
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         {folders.map((folder) => (
           <div key={folder._id} className="group relative">
             <div
               onClick={() => onFolderClick(folder._id, folder.name)}
-              className="flex flex-col items-center p-4 rounded-lg hover:bg-accent cursor-pointer transition-colors"
+              className="flex flex-col items-center rounded-md border border-transparent p-4 hover:border-border hover:bg-card cursor-pointer transition-colors focus-visible:ring-2 focus-visible:ring-ring"
             >
               {/* Realistic Folder Icon */}
               <div className="relative mb-2">
@@ -82,7 +82,6 @@ export function FolderGrid({
                   viewBox="0 0 80 64"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="drop-shadow-md"
                 >
                   {/* Folder back */}
                   <path
@@ -115,7 +114,7 @@ export function FolderGrid({
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-8 w-8 p-0 bg-background/80 backdrop-blur-sm"
+                    className="h-8 w-8 p-0 bg-background/90"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <MoreVertical className="h-4 w-4" />

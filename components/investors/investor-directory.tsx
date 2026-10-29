@@ -38,7 +38,7 @@ export function InvestorDirectory({ data, filters, basePath, canEdit, canConfigu
   const openStatus = (investor: InvestorRow) => { setSelected(investor); setStatus(investor.status); setRemarks(""); setStatusMessage(""); };
   const saveStatus = () => { if (!selected) return; startTransition(async () => { const result = await changeInvestorStatus(selected._id, status, remarks); if (result.success) { setSelected(null); router.refresh(); } else setStatusMessage(result.message); }); };
 
-  return <div className="space-y-6">
+  return <div className="investor-workspace workspace-page">
     <InvestorRefresh />
     <div className="flex flex-wrap items-start justify-between gap-3"><div><h1 className="font-realce text-2xl font-semibold">Investor Relations</h1><p className="text-sm text-muted-foreground">Shared Operations investor pipeline · All Investors</p></div><div className="flex gap-2">{canConfigure && <Button variant="outline" onClick={() => setConfiguring(true)}>Configure pipeline</Button>}{canEdit && <Button onClick={() => setCreating(true)}>Add investor</Button>}</div></div>
     <section aria-label="Executive summary" className="grid grid-cols-2 gap-3 lg:grid-cols-5">{[["Total Investors", data.summary.total], ["Engaged Investors", data.summary.engaged], ["Meetings Scheduled", data.summary.meetings], ["Follow-ups Required", data.summary.followups], ["Engagement Rate", `${data.summary.rate}%`]].map(([label, value]) => <div key={label} className="rounded-xl border bg-card p-4"><p className="text-xs text-muted-foreground">{label}</p><p className="mt-2 text-2xl font-semibold tabular-nums">{value}</p></div>)}</section>

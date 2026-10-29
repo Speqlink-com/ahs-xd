@@ -11,14 +11,14 @@ export default async function SuperAdminPage() {
   const [users, stats] = await Promise.all([getUsers(), getUserStats()]);
 
   return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-semibold text-foreground font-realce">
+    <div className="workspace-page">
+      <div className="workspace-header">
+        <div><h1 className="workspace-title">
           User Management
         </h1>
-        <p className="text-sm text-muted-foreground mt-1">
+        <p className="workspace-description">
           Manage system users, roles and access
-        </p>
+        </p></div>
       </div>
       <UserMetrics stats={stats} />
       <UserManagement users={users} currentUserId={session.userId} />

@@ -90,8 +90,8 @@ export function CreateFolderDialog({
                   key={c.value}
                   type="button"
                   onClick={() => setColor(c.value)}
-                  className={`h-10 w-10 rounded-lg transition-all ${
-                    color === c.value ? "ring-2 ring-primary ring-offset-2" : ""
+                  className={`h-9 w-9 cursor-pointer rounded-md border border-black/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                    color === c.value ? "ring-2 ring-primary ring-offset-2 ring-offset-background" : ""
                   }`}
                   style={{ backgroundColor: c.value }}
                   title={c.name}

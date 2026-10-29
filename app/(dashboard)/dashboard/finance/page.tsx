@@ -38,10 +38,9 @@ export default async function FinancePage({
     );
   }
   return (
-    <FinanceOverview
-      data={data}
-      canAdmin={canAdmin}
-      canTransfer={canTransfer}
-    />
+    <div className="workspace-page">
+      <div className="workspace-header"><div><h1 className="workspace-title">Finance</h1><p className="workspace-description">Revenue, spending and cash position</p></div></div>
+      <FinanceOverview data={data} canAdmin={canAdmin} canTransfer={canTransfer} />
+    </div>
   );
 }

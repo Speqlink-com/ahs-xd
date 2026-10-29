@@ -32,7 +32,7 @@ const MONTHS = [
   "Dec",
 ];
 
-const PIE_COLORS = ["#a78bfa", "#f97316", "#a3e635", "#60a5fa", "#f43f5e"];
+const PIE_COLORS = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"];
 
 function fmt(n: number) {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
@@ -43,9 +43,9 @@ function fmt(n: number) {
 const tooltipStyle = {
   backgroundColor: "var(--card)",
   border: "1px solid var(--border)",
-  borderRadius: 10,
+  borderRadius: 6,
   fontSize: 12,
-  boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+  boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
 };
 
 const axisProps = {
@@ -75,7 +75,7 @@ function CallsMeetingsChart({ data }: { data: TrendPoint[] }) {
   const totalMeetings = filtered.reduce((s, d) => s + d.meetings, 0);
 
   return (
-    <div className="rounded-xl border border-border/60 bg-card p-5 flex flex-col gap-4">
+    <div className="workspace-section flex flex-col gap-4">
       {/* Header */}
       <div className="flex items-start justify-between gap-3 flex-wrap">
         <div>
@@ -242,12 +242,12 @@ export function OpsCharts({
   const revTrend = Object.values(revMap);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
       {/* Calls & Meetings — interactive bar chart with date filter */}
       <CallsMeetingsChart data={execTrend} />
 
       {/* Revenue by product */}
-      <div className="rounded-xl border border-border/60 bg-card p-5 flex flex-col gap-4">
+      <div className="workspace-section flex flex-col gap-4">
         <div>
           <p className="text-sm font-semibold text-foreground">
             Revenue by Product
@@ -296,7 +296,7 @@ export function OpsCharts({
       </div>
 
       {/* Deal status distribution */}
-      <div className="rounded-xl border border-border/60 bg-card p-5 flex flex-col gap-4">
+      <div className="workspace-section flex flex-col gap-4">
         <div>
           <p className="text-sm font-semibold text-foreground">Deal Status</p>
           <p className="text-xs text-muted-foreground">
@@ -345,7 +345,7 @@ export function OpsCharts({
       </div>
 
       {/* Monthly revenue trend by product */}
-      <div className="rounded-xl border border-border/60 bg-card p-5 flex flex-col gap-4">
+      <div className="workspace-section flex flex-col gap-4">
         <div>
           <p className="text-sm font-semibold text-foreground">
             Monthly Revenue Trend

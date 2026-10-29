@@ -103,10 +103,10 @@ export function UserManagement({
   return (
     <>
       {/* Table */}
-      <div className="rounded-xl border border-border/60 overflow-hidden">
+      <div className="workspace-data-panel">
         <Table>
           <TableHeader>
-            <TableRow className="bg-muted/30 hover:bg-muted/30">
+            <TableRow>
               <TableHead className="w-[260px]">User</TableHead>
               <TableHead>Role</TableHead>
               <TableHead className="hidden md:table-cell">Status</TableHead>

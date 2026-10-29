@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+import { MetricItem, MetricStrip } from "@/components/ui/metric-strip";
 import { Mail, Send, CheckCircle2, XCircle } from "lucide-react";
 
 type Campaign = {
@@ -79,23 +79,16 @@ export function CampaignStats({ campaigns }: { campaigns: Campaign[] }) {
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <MetricStrip>
       {stats.map((stat) => (
-        <Card
+        <MetricItem
           key={stat.label}
-          className={`p-4 border ${stat.borderColor} ${stat.bgColor} rounded-none`}
-        >
-          <div className="flex items-start justify-between">
-            <div className="flex flex-col gap-1">
-              <p className="text-xs text-muted-foreground font-extrabold">
-                {stat.label}
-              </p>
-              <p className={`text-2xl font-bold ${stat.color}`}>{stat.value}</p>
-            </div>
-            <stat.icon className={`h-5 w-5 ${stat.color}`} />
-          </div>
-        </Card>
+          label={stat.label}
+          value={stat.value}
+          icon={stat.icon}
+          valueClassName={stat.label === "Failed Emails" ? "text-destructive" : undefined}
+        />
       ))}
-    </div>
+    </MetricStrip>
   );
 }

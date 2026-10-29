@@ -44,13 +44,13 @@ export default async function OpsDashboard({
   if (tab === "execution") {
     const logs = await getExecutionLogs("month");
     return (
-      <div className="flex flex-col gap-6">
-        <div className="flex items-start justify-between gap-4 flex-wrap">
+      <div className="workspace-page">
+        <div className="workspace-header">
           <div>
-            <h1 className="text-2xl font-semibold font-realce">
+            <h1 className="workspace-title">
               Execution Log
             </h1>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="workspace-description">
               Daily activity tracking
             </p>
           </div>
@@ -68,11 +68,11 @@ export default async function OpsDashboard({
   if (tab === "deals") {
     const operations = await getOperations();
     return (
-      <div className="flex flex-col gap-6">
-        <div className="flex items-start justify-between gap-4 flex-wrap">
+      <div className="workspace-page">
+        <div className="workspace-header">
           <div>
-            <h1 className="text-2xl font-semibold">Deals & Operations</h1>
-            <p className="text-sm text-muted-foreground mt-1">
+            <h1 className="workspace-title">Deals & Operations</h1>
+            <p className="workspace-description">
               SafeSport · ResultShield
             </p>
           </div>
@@ -89,11 +89,11 @@ export default async function OpsDashboard({
 
   // Overview
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-start justify-between gap-4 flex-wrap">
+    <div className="workspace-page">
+      <div className="workspace-header">
         <div>
-          <h1 className="text-2xl font-semibold font-realce">Operations</h1>
-          <p className="text-sm text-muted-foreground mt-1">
+          <h1 className="workspace-title">Operations</h1>
+          <p className="workspace-description">
             Execution · Pipeline · Performance
           </p>
         </div>

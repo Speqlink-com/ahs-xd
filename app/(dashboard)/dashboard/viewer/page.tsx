@@ -21,5 +21,5 @@ export default async function ViewerDashboard({
   if (tab === "expenses")
     return <FinanceExpenses data={data} canAdmin={false} />;
   if (tab === "wallets") return <FinanceWallets data={data} canAdmin={false} />;
-  return <FinanceOverview data={data} canAdmin={false} />;
+  return <div className="workspace-page"><div className="workspace-header"><div><h1 className="workspace-title">Overview</h1><p className="workspace-description">Financial performance and wallet position</p></div></div><FinanceOverview data={data} canAdmin={false} /></div>;
 }

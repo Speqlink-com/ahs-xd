@@ -219,10 +219,10 @@ export function ExecutionTable({
           </div>
         </div>
 
-        <div className="rounded-xl border border-border/60 overflow-hidden">
+        <div className="workspace-data-panel">
           <Table>
             <TableHeader>
-              <TableRow className="bg-muted/30 hover:bg-muted/30">
+              <TableRow>
                 <TableHead>Date</TableHead>
                 <TableHead className="text-right">Calls</TableHead>
                 <TableHead className="text-right">Meetings</TableHead>

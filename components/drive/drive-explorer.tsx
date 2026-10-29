@@ -71,11 +71,11 @@ export function DriveExplorer() {
   );
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="workspace-page min-w-0">
       {/* Header */}
-      <div className="border-b border-border bg-card p-4">
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold">XDDrive</h1>
+      <div className="border-b border-border pb-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div><h1 className="workspace-title">XDDrive</h1><p className="workspace-description">Folders and financial documents</p></div>
           <div className="flex items-center gap-2">
             <Button
               variant="outline"
@@ -88,7 +88,7 @@ export function DriveExplorer() {
                 <Grid3x3 className="h-4 w-4" />
               )}
             </Button>
-            <Button onClick={() => setShowCreateFolder(true)}>
+            <Button variant="outline" onClick={() => setShowCreateFolder(true)}>
               <FolderPlus className="h-4 w-4 mr-2" />
               New Folder
             </Button>
@@ -100,7 +100,7 @@ export function DriveExplorer() {
         </div>
 
         {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-sm mb-4">
+        <div className="flex flex-wrap items-center gap-2 text-sm mb-4" aria-label="Folder path">
           {breadcrumbs.map((crumb, index) => (
             <div key={index} className="flex items-center gap-2">
               {index > 0 && (
@@ -122,7 +122,7 @@ export function DriveExplorer() {
         </div>
 
         {/* Search */}
-        <div className="relative">
+        <div className="relative max-w-md">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search documents..."
@@ -134,17 +134,17 @@ export function DriveExplorer() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-auto p-6">
+      <div className="min-w-0 flex-1">
         {loading ? (
           <div className="flex items-center justify-center h-64">
             <div className="h-8 w-8 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
           </div>
         ) : (
-          <div className="space-y-8">
+          <div className="space-y-7">
             {/* Folders */}
             {folders.length > 0 && (
               <div>
-                <h2 className="text-sm font-semibold text-muted-foreground mb-3">
+                <h2 className="workspace-section-title mb-3">
                   Folders
                 </h2>
                 <FolderGrid
@@ -158,7 +158,7 @@ export function DriveExplorer() {
             {/* Documents */}
             {filteredDocuments.length > 0 && (
               <div>
-                <h2 className="text-sm font-semibold text-muted-foreground mb-3">
+                <h2 className="workspace-section-title mb-3">
                   Documents ({filteredDocuments.length})
                 </h2>
                 {viewMode === "grid" ? (
@@ -177,14 +177,14 @@ export function DriveExplorer() {
 
             {/* Empty State */}
             {folders.length === 0 && filteredDocuments.length === 0 && (
-              <div className="flex flex-col items-center justify-center h-64 text-center">
-                <div className="h-16 w-16 rounded-full bg-muted flex items-center justify-center mb-4">
-                  <Upload className="h-8 w-8 text-muted-foreground" />
+              <div className="workspace-empty">
+                <div className="mb-2 flex size-10 items-center justify-center rounded-md bg-muted">
+                  <Upload className="h-5 w-5 text-muted-foreground" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">
+                <h3 className="text-sm font-semibold">
                   No files or folders
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-sm text-muted-foreground mb-2">
                   Get started by creating a folder or uploading a document
                 </p>
                 <div className="flex gap-2">

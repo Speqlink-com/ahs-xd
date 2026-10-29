@@ -132,6 +132,53 @@
   --shadow-2xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
 }
 
+/* AHS workspace surfaces keep the existing lime accent while reducing visual noise. */
+:root {
+  --background: oklch(0.978 0.012 112);
+  --card: oklch(1 0 0);
+  --popover: oklch(1 0 0);
+  --muted: oklch(0.953 0.015 112);
+  --muted-foreground: oklch(0.48 0.014 248);
+  --border: oklch(0.9 0.018 112);
+  --input: oklch(0.9 0.018 112);
+  --primary-foreground: oklch(0.19 0.02 248);
+  --chart-1: oklch(0.73 0.16 112);
+  --chart-2: oklch(0.56 0.08 245);
+  --chart-3: oklch(0.68 0.07 245);
+  --chart-4: oklch(0.67 0.12 80);
+  --chart-5: oklch(0.54 0.09 160);
+  --sidebar: oklch(0.945 0.028 112);
+  --sidebar-accent: oklch(0.896 0.055 112);
+  --sidebar-accent-foreground: oklch(0.25 0.05 112);
+  --sidebar-border: oklch(0.87 0.04 112);
+  --radius: 0.5rem;
+  --shadow-sm: 0 1px 2px oklch(0.19 0.02 248 / 0.04);
+  --shadow: 0 2px 6px oklch(0.19 0.02 248 / 0.06);
+  --shadow-md: 0 8px 24px oklch(0.19 0.02 248 / 0.08);
+  --shadow-lg: 0 16px 40px oklch(0.19 0.02 248 / 0.1);
+  --shadow-xl: 0 24px 64px oklch(0.19 0.02 248 / 0.12);
+}
+
+.dark {
+  --background: oklch(0.16 0.015 112);
+  --card: oklch(0.19 0.011 112);
+  --popover: oklch(0.2 0.011 112);
+  --muted: oklch(0.26 0.014 112);
+  --muted-foreground: oklch(0.7 0.007 248);
+  --border: oklch(0.31 0.018 112);
+  --input: oklch(0.31 0.018 112);
+  --primary-foreground: oklch(0.15 0.015 248);
+  --chart-1: oklch(0.81 0.17 112);
+  --chart-2: oklch(0.7 0.08 245);
+  --chart-3: oklch(0.58 0.05 245);
+  --chart-4: oklch(0.76 0.11 80);
+  --chart-5: oklch(0.7 0.08 160);
+  --sidebar: oklch(0.2 0.027 112);
+  --sidebar-accent: oklch(0.3 0.043 112);
+  --sidebar-accent-foreground: oklch(0.91 0.1 112);
+  --sidebar-border: oklch(0.33 0.035 112);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -191,7 +238,35 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-geist-sans), sans-serif;
+    font-size: 14px;
+    font-feature-settings: "tnum";
   }
+}
+
+@layer components {
+  .workspace-page { @apply flex flex-col gap-6; }
+  .workspace-header { @apply flex flex-wrap items-end justify-between gap-3 border-b border-border pb-5; }
+  .workspace-title { @apply text-xl font-semibold tracking-tight text-foreground md:text-2xl; }
+  .workspace-description { @apply mt-1 text-sm text-muted-foreground; }
+  .workspace-section { @apply border-t border-border pt-5; }
+  .workspace-section-title { @apply text-sm font-semibold tracking-tight text-foreground; }
+  .workspace-section-note { @apply mt-1 text-xs text-muted-foreground; }
+  .workspace-toolbar { @apply flex flex-wrap items-center gap-2 border-b border-border py-3; }
+  .workspace-metrics { @apply grid grid-cols-2 divide-x divide-y divide-border border-y border-border md:divide-y-0; }
+  .workspace-metric { @apply flex min-w-0 flex-col gap-1 px-4 py-4 first:pl-0 last:pr-0; }
+  .workspace-metric-label { @apply text-[11px] font-medium tracking-wide text-muted-foreground; }
+  .workspace-metric-value { @apply text-xl font-semibold tracking-tight text-foreground tabular-nums md:text-2xl; }
+  .workspace-data-panel { @apply overflow-hidden rounded-md border border-border bg-card; }
+  .workspace-empty { @apply flex min-h-40 flex-col items-center justify-center gap-2 p-6 text-center text-sm text-muted-foreground; }
+  .workspace-auth-panel { @apply border border-border p-6 shadow-sm sm:p-8; background: color-mix(in oklch, var(--card) 96%, var(--primary)); }
+  .workspace-field-select { @apply h-9 w-full rounded-md border border-input bg-card px-3 text-sm text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/20; }
+  .auth-brand-surface { background: linear-gradient(155deg, color-mix(in oklch, var(--primary) 24%, var(--card)), color-mix(in oklch, var(--primary) 10%, var(--background)) 55%, var(--background)); }
+  .auth-form-surface { background: linear-gradient(135deg, var(--background), color-mix(in oklch, var(--primary) 8%, var(--background))); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
 @font-face {
@@ -331,4 +406,68 @@
 
 .custom-scrollbar::-webkit-scrollbar-track {
   background-color: transparent;
+}
+
+/* Record workspace: open summary and detail composition around the data table. */
+.investor-workspace > section[aria-label="Executive summary"] {
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.investor-workspace > section[aria-label="Executive summary"] > div {
+  min-width: 0;
+  border: 0;
+  border-right: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  padding: 1rem;
+}
+.investor-workspace > section[aria-label="Executive summary"] > div:last-child { border-right: 0; }
+.investor-workspace > section[aria-label="Investor pipeline analytics"] { gap: 1.75rem; }
+.investor-workspace > section[aria-label="Investor pipeline analytics"] > div {
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  padding: 1.25rem 0 0;
+}
+.investor-workspace > section[aria-label="Complete investor directory"] {
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.investor-workspace > section[aria-label="Requires CEO attention"] {
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  padding: 1.25rem 0 0;
+}
+.investor-workspace > section[aria-label="Requires CEO attention"] a {
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.investor-workspace select,
+.investor-profile select {
+  border-radius: var(--radius);
+  background: var(--card);
+  border-color: var(--border);
+}
+.investor-profile > section[aria-label="Investor profile"] { gap: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.investor-profile > section[aria-label="Investor profile"] > div {
+  border: 0;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  padding: 1rem;
+}
+.investor-profile > section:not([aria-label="Investor profile"]) {
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  padding: 1.25rem 0 0;
+}
+@media (max-width: 768px) {
+  .investor-workspace > section[aria-label="Executive summary"] > div { border-bottom: 1px solid var(--border); }
 }

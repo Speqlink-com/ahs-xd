@@ -142,7 +142,7 @@ export function NotificationBell() {
       {/* Bell */}
       <button
         onClick={() => setOpen((v) => !v)}
-        className="relative h-8 w-8 flex items-center justify-center rounded-lg hover:bg-muted/60 transition-colors cursor-pointer"
+        className="relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
         aria-label="Notifications"
       >
         <Bell
@@ -159,9 +159,9 @@ export function NotificationBell() {
 
       {/* Panel */}
       {open && (
-        <div className="absolute right-0 top-10 w-80 sm:w-96 z-50 rounded-2xl border border-border/60 bg-card shadow-2xl overflow-hidden">
+        <div className="absolute right-0 top-11 z-50 w-[min(23rem,calc(100vw-2rem))] overflow-hidden rounded-md border border-border bg-popover shadow-lg">
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-border/60">
+          <div className="flex items-center justify-between border-b border-border px-4 py-3">
             <div className="flex items-center gap-2">
               <p className="text-sm font-semibold text-foreground">
                 Notifications
@@ -180,7 +180,7 @@ export function NotificationBell() {
                 <button
                   onClick={handleMarkAll}
                   disabled={isPending}
-                  className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground cursor-pointer transition-colors px-2 py-1 rounded-md hover:bg-muted/50"
+                  className="flex cursor-pointer items-center gap-1 rounded-md px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                 >
                   <CheckCheck className="h-3.5 w-3.5" />
                   Mark all read
@@ -188,7 +188,7 @@ export function NotificationBell() {
               )}
               <button
                 onClick={() => setOpen(false)}
-                className="h-7 w-7 flex items-center justify-center rounded-lg hover:bg-muted/60 cursor-pointer transition-colors text-muted-foreground"
+                className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
@@ -210,8 +210,8 @@ export function NotificationBell() {
                   <div
                     key={n._id}
                     onClick={() => !n.read && handleMarkRead(n._id)}
-                    className={`flex gap-3 px-4 py-3 border-b border-border/40 transition-colors cursor-pointer ${
-                      n.read ? "opacity-50" : "hover:bg-muted/30"
+                    className={`flex cursor-pointer gap-3 border-b border-border/60 px-4 py-3 transition-colors ${
+                      n.read ? "opacity-60" : "hover:bg-muted/50"
                     }`}
                   >
                     <div

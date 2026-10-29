@@ -24,11 +24,11 @@ export function FinanceWallets({
     .slice(0, 10);
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex items-start justify-between gap-4 flex-wrap">
+    <div className="workspace-page">
+      <div className="workspace-header">
         <div>
-          <h1 className="text-2xl font-semibold font-realce">Wallets</h1>
-          <p className="text-sm text-muted-foreground mt-1">
+          <h1 className="workspace-title">Wallets</h1>
+          <p className="workspace-description">
             Balances, transfers and recent activity
           </p>
         </div>
@@ -51,7 +51,7 @@ export function FinanceWallets({
       />
 
       {/* Recent activity per wallet */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-6 border-t border-border pt-5 lg:grid-cols-2">
         <WalletHistory
           title="Primary Wallet"
           transactions={primaryTx}
@@ -77,7 +77,7 @@ function WalletHistory({
   currency: string;
 }) {
   return (
-    <div className="rounded-2xl border border-border/60 bg-card p-5 flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <p className="text-sm font-semibold text-foreground">{title} · Recent</p>
       {transactions.length === 0 ? (
         <p className="text-sm text-muted-foreground py-6 text-center">

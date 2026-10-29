@@ -72,10 +72,10 @@ export default function ForgotVerifyPage() {
           />
         </div>
         <div className="text-center">
-          <h1 className="font-realce text-3xl tracking-widest uppercase bg-linear-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+          <h1 className="font-realce text-2xl tracking-[0.12em] uppercase text-foreground">
             AHS-XD
             <sup className="text-base tracking-normal text-muted-foreground ml-0.5">
-              v2.7
+              v2.8
             </sup>
           </h1>
           <p className="text-xs text-muted-foreground tracking-[0.2em] uppercase mt-0.5">
@@ -84,7 +84,7 @@ export default function ForgotVerifyPage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border/60 bg-card/60 backdrop-blur-xl shadow-xl p-8 flex flex-col gap-6">
+      <div className="workspace-auth-panel flex flex-col gap-6">
         <div className="flex flex-col items-center gap-3">
           <div className="h-12 w-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
             <svg

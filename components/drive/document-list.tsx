@@ -82,7 +82,7 @@ export function DocumentList({ documents, onRefresh }: DocumentListProps) {
 
   return (
     <>
-      <div className="border border-border rounded-lg overflow-hidden">
+      <div className="workspace-data-panel">
         <table className="w-full">
           <thead className="bg-muted/50">
             <tr>

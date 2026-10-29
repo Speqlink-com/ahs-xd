@@ -20,12 +20,12 @@ export default async function XDMailsPage({
   const campaigns = await getCampaigns();
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="workspace-page">
       <Toaster position="top-right" richColors />
-      <div className="flex items-start justify-between gap-4 flex-wrap">
+      <div className="workspace-header">
         <div>
-          <h1 className="text-2xl font-semibold font-realce">XDMailer</h1>
-          <p className="text-sm text-muted-foreground mt-1">
+          <h1 className="workspace-title">XDMailer</h1>
+          <p className="workspace-description">
             Bulk email campaigns for marketing and outreach
           </p>
         </div>

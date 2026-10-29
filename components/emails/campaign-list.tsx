@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -126,13 +125,12 @@ export function CampaignList({ campaigns }: { campaigns: Campaign[] }) {
 
   return (
     <>
-      <div className="flex flex-col gap-6 w-7xl mx-auto">
+      <div className="workspace-page min-w-0">
         <CampaignStats campaigns={campaigns} />
 
-        <div className=" mx-auto w-full">
-          <Card className="rounded-none">
+        <div className="workspace-data-panel w-full">
             <Table>
-              <TableHeader className="bg-blue-950">
+              <TableHeader>
                 <TableRow>
                   <TableHead className="w-[40%]">Subject</TableHead>
                   <TableHead>Recipients</TableHead>
@@ -252,7 +250,6 @@ export function CampaignList({ campaigns }: { campaigns: Campaign[] }) {
                 )}
               </TableBody>
             </Table>
-          </Card>
         </div>
       </div>
 

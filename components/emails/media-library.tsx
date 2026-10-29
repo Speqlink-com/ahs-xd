@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
@@ -216,9 +215,9 @@ export function MediaLibrary({
                   <p>No images uploaded yet</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
                   {images.map((media) => (
-                    <Card key={media._id} className="p-3 group relative">
+                    <div key={media._id} className="group relative min-w-0 rounded-md border border-border bg-card p-2.5">
                       <div className="aspect-video relative rounded-lg overflow-hidden bg-muted mb-2">
                         <img
                           src={media.url}
@@ -264,7 +263,7 @@ export function MediaLibrary({
                           <Trash2 className="h-3 w-3" />
                         </Button>
                       </div>
-                    </Card>
+                    </div>
                   ))}
                 </div>
               )}
@@ -277,9 +276,9 @@ export function MediaLibrary({
                   <p>No videos uploaded yet</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                   {videos.map((media) => (
-                    <Card key={media._id} className="p-3 group relative">
+                    <div key={media._id} className="group relative min-w-0 rounded-md border border-border bg-card p-2.5">
                       <div className="aspect-video relative rounded-lg overflow-hidden bg-muted mb-2">
                         <video
                           src={media.url}
@@ -323,7 +322,7 @@ export function MediaLibrary({
                           <Trash2 className="h-3 w-3" />
                         </Button>
                       </div>
-                    </Card>
+                    </div>
                   ))}
                 </div>
               )}

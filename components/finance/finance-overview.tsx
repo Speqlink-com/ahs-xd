@@ -5,6 +5,7 @@ import { TrendingUp, TrendingDown, ArrowRightLeft, Flame } from "lucide-react";
 import { FinanceCharts } from "./finance-charts";
 import { AddTransaction } from "./add-transaction";
 import { WalletCards } from "./wallet-cards";
+import { MetricItem, MetricStrip } from "@/components/ui/metric-strip";
 
 function fmt(n: number, currency = "KES") {
   return `${currency} ${Math.abs(n).toLocaleString("en-KE", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
@@ -15,8 +16,6 @@ function StatCard({
   value,
   sub,
   icon: Icon,
-  iconClass,
-  gradient,
   negative,
 }: {
   label: string;
@@ -27,28 +26,7 @@ function StatCard({
   gradient: string;
   negative?: boolean;
 }) {
-  return (
-    <div
-      className={`rounded-2xl border border-border/60 p-5 flex flex-col gap-4 ${gradient}`}
-    >
-      <div
-        className={`h-10 w-10 rounded-xl flex items-center justify-center ${iconClass}`}
-      >
-        <Icon className="h-5 w-5" />
-      </div>
-      <div>
-        <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium">
-          {label}
-        </p>
-        <p
-          className={`font-realce text-2xl tabular-nums mt-1 ${negative ? "text-destructive" : "text-foreground"}`}
-        >
-          {value}
-        </p>
-        {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
-      </div>
-    </div>
-  );
+  return <MetricItem label={label} value={value} detail={sub} icon={Icon} valueClassName={negative ? "text-destructive" : undefined} />;
 }
 
 export function FinanceOverview({
@@ -64,10 +42,10 @@ export function FinanceOverview({
   const isNeg = kpi.netCashFlow < 0;
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="workspace-page">
       {/* Header */}
 
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
+      <MetricStrip>
         <StatCard
           label="Revenue"
           value={fmt(kpi.revenue, config.currency)}
@@ -106,7 +84,7 @@ export function FinanceOverview({
           iconClass="bg-orange-500/20 text-orange-400"
           gradient="bg-linear-to-br from-orange-500/10 via-orange-500/5 to-transparent"
         />
-      </div>
+      </MetricStrip>
       {/* Wallet gauges */}
       <WalletCards
         primaryBalance={kpi.primaryBalance}

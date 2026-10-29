@@ -89,11 +89,11 @@ export function DocumentGrid({ documents, onRefresh }: DocumentGridProps) {
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         {documents.map((doc) => (
           <div
             key={doc._id}
-            className="group relative border border-border rounded-lg p-4 hover:shadow-md transition-all cursor-pointer"
+            className="group relative rounded-md border border-border bg-card p-3 hover:border-foreground/30 transition-colors cursor-pointer focus-within:ring-2 focus-within:ring-ring"
             onClick={() => {
               setSelectedDocument(doc);
               setPreviewDialogOpen(true);
@@ -132,7 +132,7 @@ export function DocumentGrid({ documents, onRefresh }: DocumentGridProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-8 w-8 p-0 bg-background/80 backdrop-blur-sm"
+                    className="h-8 w-8 p-0 bg-background/90"
                     onClick={(e) => e.stopPropagation()}
                   >
                     <MoreVertical className="h-4 w-4" />

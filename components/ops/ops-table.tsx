@@ -288,10 +288,10 @@ export function OpsTable({
           </Select>
         </div>
 
-        <div className="rounded-xl border border-border/60 overflow-hidden">
+        <div className="workspace-data-panel">
           <Table>
             <TableHeader>
-              <TableRow className="bg-muted/30 hover:bg-muted/30">
+              <TableRow>
                 <TableHead>Date</TableHead>
                 <TableHead>Type</TableHead>
                 <TableHead>Client</TableHead>
