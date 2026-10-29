@@ -18,6 +18,7 @@ import {
   Zap,
   Mail,
   HardDrive,
+  Handshake,
 } from "lucide-react";
 import {
   SidebarProvider,
@@ -81,6 +82,7 @@ const NAV_BY_ROLE: Record<string, NavItem[]> = {
     },
     { href: "/dashboard/xddrive", label: "XDDrive", icon: HardDrive },
     { href: "/dashboard/ops", label: "Operations", icon: Settings2 },
+    { href: "/dashboard/ops?tab=investors", label: "Investor Relations", icon: Handshake },
     { href: "/dashboard/xdmails", label: "XDMailer", icon: Mail },
     { href: "/dashboard/sales", label: "Sales", icon: GitBranch },
   ],
@@ -93,6 +95,7 @@ const NAV_BY_ROLE: Record<string, NavItem[]> = {
     },
     { href: "/dashboard/ceo?tab=wallets", label: "Wallets", icon: Landmark },
     { href: "/dashboard/ceo?tab=xddrive", label: "XDDrive", icon: HardDrive },
+    { href: "/dashboard/ceo?tab=investors", label: "Investor Relations", icon: Handshake },
     { href: "/dashboard/xdmails", label: "XDMails", icon: Mail },
   ],
   finance: [
@@ -113,6 +116,7 @@ const NAV_BY_ROLE: Record<string, NavItem[]> = {
     { href: "/dashboard/ops", label: "Overview", icon: LayoutDashboard },
     { href: "/dashboard/ops?tab=execution", label: "Execution", icon: Zap },
     { href: "/dashboard/ops?tab=deals", label: "Deals", icon: GitBranch },
+    { href: "/dashboard/ops?tab=investors", label: "Investor Relations", icon: Handshake },
     { href: "/dashboard/xdmails", label: "XDMailer", icon: Mail },
   ],
   sales: [

@@ -8,8 +8,10 @@ import { FinanceExpenses } from "@/components/finance/finance-expenses";
 import { FinanceWallets } from "@/components/finance/finance-wallets";
 import { CeoOverview } from "@/components/ceo/ceo-overview";
 import { DriveExplorer } from "@/components/drive/drive-explorer";
+import { getInvestorDirectory } from "@/actions/investors";
+import { InvestorDirectory } from "@/components/investors/investor-directory";
 
-type SearchParams = Promise<{ tab?: string; view?: string }>;
+type SearchParams = Promise<{ tab?: string; view?: string; q?: string; status?: string; wave?: string; manager?: string; priority?: string; sort?: string; page?: string }>;
 
 export default async function CeoDashboard({
   searchParams,
@@ -21,7 +23,12 @@ export default async function CeoDashboard({
     redirect("/login");
   }
 
-  const { tab = "overview", view = "finance" } = await searchParams;
+  const params = await searchParams;
+  const { tab = "overview", view = "finance" } = params;
+  if (tab === "investors") {
+    const directory = await getInvestorDirectory(params);
+    return <InvestorDirectory data={directory} filters={params} basePath="/dashboard/ceo" canEdit={session.role === "superadmin"} canConfigure={session.role === "superadmin"} />;
+  }
   const data = await getFinanceData("all");
 
   // Finance sub-tabs

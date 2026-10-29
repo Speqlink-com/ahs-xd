@@ -9,8 +9,10 @@ import { ExecutionForm } from "@/components/ops/execution-form";
 import { ExecutionTable } from "@/components/ops/execution-table";
 import { OpsForm } from "@/components/ops/ops-form";
 import { OpsTable } from "@/components/ops/ops-table";
+import { getInvestorDirectory } from "@/actions/investors";
+import { InvestorDirectory } from "@/components/investors/investor-directory";
 
-type SearchParams = Promise<{ tab?: string }>;
+type SearchParams = Promise<{ tab?: string; q?: string; status?: string; wave?: string; manager?: string; priority?: string; sort?: string; page?: string }>;
 
 export default async function OpsDashboard({
   searchParams,
@@ -25,7 +27,12 @@ export default async function OpsDashboard({
     redirect("/login");
   }
 
-  const { tab = "overview" } = await searchParams;
+  const params = await searchParams;
+  const { tab = "overview" } = params;
+  if (tab === "investors") {
+    const directory = await getInvestorDirectory(params);
+    return <InvestorDirectory data={directory} filters={params} basePath="/dashboard/ops" canEdit={session.role === "ops" || session.role === "superadmin"} canConfigure={session.role === "superadmin"} />;
+  }
   const canEdit = ["superadmin", "admin", "ops"].includes(session.role);
 
   const [execStats, opsStats, financeData] = await Promise.all([
